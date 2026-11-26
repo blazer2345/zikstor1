@@ -1,0 +1,598 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Marketplace</title>
+
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+
+      * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f7fb;
+    color: #222;
+}
+
+
+/* HEADER */
+
+.header {
+    background: #14213d;
+    color: white;
+    padding: 18px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo h2 {
+    font-size: 25px;
+}
+
+.logo span {
+    color: #fca311;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #fca311;
+}
+
+.cart-count {
+    background: #fca311;
+    color: #14213d;
+    border-radius: 50%;
+    padding: 4px 8px;
+    font-size: 12px;
+}
+
+
+/* HERO */
+
+.hero {
+    background: #14213d;
+    color: white;
+    text-align: center;
+    padding: 65px 20px;
+}
+
+.hero h1 {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    margin-bottom: 25px;
+    color: #ddd;
+}
+
+.search-form {
+    display: flex;
+    justify-content: center;
+    max-width: 550px;
+    margin: auto;
+    gap: 8px;
+}
+
+.search-form input {
+    flex: 1;
+    min-width: 0;
+    padding: 14px;
+    border: none;
+    border-radius: 6px;
+    outline: none;
+}
+
+.search-form button {
+    background: #fca311;
+    border: none;
+    padding: 14px 22px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+/* MAIN CONTAINER */
+
+.container {
+    padding: 40px 6%;
+}
+
+.section-heading {
+    margin-bottom: 30px;
+}
+
+.section-heading h2 {
+    font-size: 27px;
+    margin-bottom: 10px;
+}
+
+
+/* PRODUCT GRID */
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fill,
+        minmax(230px, 1fr)
+    );
+    gap: 25px;
+}
+
+.product-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+    transition: transform 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-image {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 18px;
+}
+
+.product-info h3 {
+    margin-bottom: 12px;
+}
+
+.description {
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.price {
+    color: #fca311;
+    margin: 12px 0;
+}
+
+.seller-details {
+    background: #f5f7fb;
+    padding: 12px;
+    border-radius: 7px;
+    margin-bottom: 15px;
+}
+
+.seller-details p {
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+
+/* BUTTONS */
+
+.add-cart,
+.upload-btn {
+    width: 100%;
+    padding: 13px;
+    background: #14213d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.add-cart:hover,
+.upload-btn:hover {
+    background: #fca311;
+    color: #14213d;
+}
+
+.whatsapp-btn {
+    display: inline-block;
+    background: #128c7e;
+    color: white;
+    text-decoration: none;
+    padding: 9px 12px;
+    border-radius: 5px;
+    margin: 8px 0;
+    font-size: 13px;
+}
+
+.whatsapp-btn:hover {
+    background: #075e54;
+}
+
+.remove-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 9px 13px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.continue-btn {
+    display: inline-block;
+    text-decoration: none;
+    background: #14213d;
+    color: white;
+    padding: 13px 18px;
+    border-radius: 6px;
+    margin-top: 15px;
+}
+
+
+/* UPLOAD PAGE */
+
+.upload-container {
+    max-width: 600px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+}
+
+.upload-container h2 {
+    margin-bottom: 12px;
+}
+
+.upload-container > p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.upload-container form label {
+    display: block;
+    font-weight: bold;
+    margin: 15px 0 7px;
+}
+
+.upload-container input,
+.upload-container textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.upload-container textarea {
+    resize: vertical;
+}
+
+.upload-btn {
+    margin-top: 20px;
+}
+
+.approval-note {
+    background: #fff4dc;
+    color: #745500;
+    padding: 12px;
+    border-radius: 6px;
+    margin-top: 20px;
+}
+
+
+/* CART PAGE */
+
+.cart-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+    align-items: start;
+}
+
+.cart-item {
+    display: flex;
+    gap: 20px;
+    background: white;
+    padding: 18px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+}
+
+.cart-item img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.cart-details {
+    flex: 1;
+}
+
+.cart-details p {
+    margin: 9px 0;
+    color: #555;
+}
+
+.cart-summary {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+}
+
+.cart-summary h2,
+.cart-summary h3 {
+    margin-bottom: 15px;
+}
+
+.empty-cart {
+    text-align: center;
+    background: white;
+    padding: 50px 20px;
+    border-radius: 10px;
+}
+
+.empty-cart p {
+    margin-top: 15px;
+}
+
+.empty-message {
+    padding: 25px;
+    text-align: center;
+}
+
+.message {
+    background: #dff5e5;
+    color: #176b37;
+    padding: 13px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+}
+
+.error {
+    color: #dc3545;
+    margin-top: 7px;
+    font-size: 13px;
+}
+
+
+/* FOOTER */
+
+.footer {
+    background: #14213d;
+    color: white;
+    text-align: center;
+    padding: 22px;
+    margin-top: 40px;
+}
+
+
+/* MOBILE RESPONSIVENESS */
+
+@media (max-width: 768px) {
+
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav {
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .hero h1 {
+        font-size: 27px;
+    }
+
+    .cart-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .cart-item {
+        flex-direction: column;
+    }
+
+    .cart-item img {
+        width: 100%;
+        height: 200px;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .container {
+        padding: 25px 4%;
+    }
+
+    .search-form {
+        flex-direction: column;
+    }
+
+    .search-form button {
+        width: 100%;
+    }
+
+}
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        <h2>Student<span>Market</span></h2>
+    </div>
+
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+
+        <a href="{% url 'upload_product' %}">
+            Upload Product
+        </a>
+
+        <a href="{% url 'cart' %}" class="cart-link">
+            Cart 🛒
+            <span class="cart-count">{{ cart_count }}</span>
+        </a>
+    </nav>
+
+</header>
+
+
+<section class="hero">
+
+    <h1>Find Everything You Need</h1>
+
+    <p>Buy and discover products from different sellers.</p>
+
+    <form method="GET" action="{% url 'home' %}" class="search-form">
+
+        <input
+            type="text"
+            name="q"
+            placeholder="Search for products..."
+            value="{{ search }}"
+        >
+
+        <button type="submit">Search</button>
+
+    </form>
+
+</section>
+
+
+<main class="container">
+
+    <div class="section-heading">
+
+        <h2>Available Products</h2>
+
+        <p>Discover products available in our marketplace.</p>
+
+    </div>
+
+
+    {% if messages %}
+
+        {% for message in messages %}
+
+            <div class="message">
+                {{ message }}
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
+
+
+    <div class="product-grid">
+
+        {% for product in products %}
+
+            <div class="product-card">
+
+                <img
+                    src="{{ product.product_image.url }}"
+                    alt="{{ product.product_name }}"
+                    class="product-image"
+                >
+
+                <div class="product-info">
+
+                    <h3>{{ product.product_name }}</h3>
+
+                    <p class="description">
+                        {{ product.description }}
+                    </p>
+
+                    <h3 class="price">
+                        ₦{{ product.price|floatformat:2 }}
+                    </h3>
+
+                    <div class="seller-details">
+
+                        <p>
+                            Seller: {{ product.seller_name }}
+                        </p>
+
+                        <p>
+                            WhatsApp:
+                            {{ product.whatsapp_number }}
+                        </p>
+
+                        <a
+                            href="https://wa.me/{{ product.whatsapp_number }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="whatsapp-btn"
+                        >
+                            Contact Seller
+                        </a>
+
+                    </div>
+
+                    <form
+                        method="POST"
+                        action="{% url 'add_to_cart' product.id %}"
+                    >
+
+                        {% csrf_token %}
+
+                        <button type="submit" class="add-cart">
+                            Add to Cart
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        {% empty %}
+
+            <p class="empty-message">
+                No products found. Try another search.
+            </p>
+
+        {% endfor %}
+
+    </div>
+
+</main>
+
+
+<footer class="footer">
+
+    <p>© 2026 StudentMarket. All rights reserved.</p>
+
+</footer>
+
+</body>
+</html>

@@ -65,7 +65,7 @@ def loginForm(request):
 
                     request.session['user_id'] = user.id
 
-                    return redirect('products')
+                    return redirect('category')
 
                 else:
                     error = "Incorrect password. please try again"
